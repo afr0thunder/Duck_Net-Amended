@@ -1,0 +1,16 @@
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Dataset
+data/*/*/*.jpg
+data/*/*/*.png
+!data/*/*/.gitkeep
+
+# Checkpoint
+checkpoints/*.pt
+
+# Outuput
+*.jpg
