@@ -61,8 +61,8 @@ def main(config:Configs):
     model.to(device)
     print('Model created')
 
-    train_dl = get_dataloader(os.path.join(config.ROOT_DIR, 'data/train'), batch_size=config.batch_size, shuffle=True, num_workers=config.num_workers)
-    valid_dl = get_dataloader(os.path.join(config.ROOT_DIR, 'data/val'), batch_size=config.batch_size, shuffle=False, num_workers=config.num_workers)
+    train_dl = get_dataloader(os.path.join(config.ROOT_DIR, 'data/train'), config.input_channels, config.batch_size, shuffle=True, num_workers=config.num_workers)
+    valid_dl = get_dataloader(os.path.join(config.ROOT_DIR, 'data/val'), config.input_channels, config.batch_size, shuffle=False, num_workers=config.num_workers)
     print('DataLoaders created')
 
     optimizer = torch.optim.Adam(model.parameters(), lr=config.lr, betas=config.betas, weight_decay=config.weight_decay)

@@ -67,9 +67,15 @@ def ssim_loss(y_true, y_pred):
     ssim = SSIM()
     return ssim(y_true, y_pred)
 
+def mse_loss(y_true, y_pred):
+    """
+    Mean Squared Error loss.
+    """
+    return F.mse_loss(y_true, y_pred)
+
 
 def criterion(y_true, y_pred):
     """
     Combined loss function.
     """
-    return dice_loss(y_true, y_pred) + ssim_loss(y_true, y_pred)
+    return dice_loss(y_true, y_pred) + ssim_loss(y_true, y_pred) + mse_loss(y_true, y_pred)

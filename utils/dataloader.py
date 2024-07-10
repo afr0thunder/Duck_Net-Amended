@@ -9,7 +9,7 @@ from torch.utils.data import Dataset, DataLoader
 DEFAULT_IMAGE_SIZE = (1024, 1024)
 
 class DuckDataset(Dataset):
-    def __init__(self, dataset_path:str, transform=None):
+    def __init__(self, dataset_path:str, input_channels:int, transform=None):
         if transform is None:
             transform = T.Compose([
                 T.Resize(DEFAULT_IMAGE_SIZE),
@@ -24,8 +24,14 @@ class DuckDataset(Dataset):
                 continue
             mask_filename = image_filename.replace('.jpg', '.png')
             # assert mask_filename in os.listdir(mask_path), f'Mask file {mask_filename} not found'
-            image = ImageOps.exif_transpose(Image.open(os.path.join(image_path, image_filename)).convert('RGB'))
-            mask = ImageOps.exif_transpose(Image.open(os.path.join(mask_path, mask_filename)).convert('L'))
+            image = ImageOps.exif_transpose(Image.open(os.path.join(image_path, image_filename)))
+            if input_channels == 1:
+                image = image.convert('L')
+            elif input_channels == 3:
+                image = image.convert('RGB')
+            else:
+                raise ValueError('Input channels must be 1 or 3')
+            mask = ImageOps.exif_transpose(Image.open(os.path.join(mask_path, mask_filename))).convert('L')
             self.data.append(
                 {
                     'image': transform(image),
@@ -40,8 +46,8 @@ class DuckDataset(Dataset):
         return self.data[idx]
     
 
-def get_dataloader(dataset_path:str, batch_size:int, shuffle:bool, transform=None, num_workers:int=4):
-    dataset = DuckDataset(dataset_path, transform=transform)
+def get_dataloader(dataset_path:str, input_channels:int, batch_size:int, shuffle:bool, transform=None, num_workers:int=4):
+    dataset = DuckDataset(dataset_path, input_channels, transform=transform)
     return DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
 
 
