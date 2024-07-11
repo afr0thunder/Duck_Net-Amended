@@ -1,6 +1,7 @@
 import torch
 import numpy as np
 from PIL import Image, ImageOps
+import matplotlib.pyplot as plt
 
 from model import DuckNet
 from utils.config import Configs
@@ -21,10 +22,10 @@ def predict(model:DuckNet, image_path:str, device:torch.device):
     model.eval()
     with torch.no_grad():
         output = model(image)
-    print(output.min(), output.max())
-    output_image = torch.clamp(output, 0, 1).squeeze().cpu().numpy()
-    print(output_image.shape)
-    return output_image
+
+    output_image = output.squeeze().cpu().numpy()
+    input_image = image.squeeze(0).permute(1, 2, 0).cpu().numpy()
+    return input_image, output_image
 
 
 def main(config:Configs, model_path:str, image_path:str, output_path:str):
@@ -35,15 +36,26 @@ def main(config:Configs, model_path:str, image_path:str, output_path:str):
     model.to(device)
     print(f'Model loaded from {model_path}')
 
-    output_image = predict(model, image_path, device)
-    output_image = Image.fromarray((output_image * 255).astype(np.uint8))
-    output_image.save(output_path)
+    input_image, output_image = predict(model, image_path, device)
+    
+    plt.subplot(1, 2, 1)
+    plt.imshow(input_image)
+    plt.title('Input Image')
+    plt.axis('off')
+    plt.subplot(1, 2, 2)
+    plt.imshow(output_image, cmap='gray')
+    plt.title('Prediction')
+    plt.axis('off')
+    plt.tight_layout()
+    plt.savefig(output_path)
+    plt.close()
+    
     print(f'Prediction saved at {output_path}')
 
 
 if __name__ == '__main__':
-    config = Configs()
+    config = Configs(num_filters=34)
     model_path = 'checkpoints/best_model.pt'
-    image_path = 'sample.jpg'
-    output_path = 'output.jpg'
+    image_path = 'sample_1.jpg'
+    output_path = 'output_1.jpg'
     main(config, model_path, image_path, output_path)
