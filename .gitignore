@@ -1,16 +1,32 @@
 ### Python ###
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Dataset
-data/*/*/*.jpg
-data/*/*/*.png
-!data/*/*/.gitkeep
+### Data ###
+# Ignore all images in any subfolder of data/
+data/**/*.jpg
+data/**/*.png
 
-# Checkpoint
-checkpoints/*.pt
+# But keep the .gitkeep placeholder files
+!data/**/.gitkeep
 
-# Outuput
+### Checkpoints ###
+# Ignore all model weights
+checkpoints/**/*.pt
+checkpoints/**/*.pth
+!checkpoints/.
+!checkpoints/.gitkeep
+
+### Output Files ###
+# Ignore generated images
+output_*.jpg
 *.jpg
+
+### Environment ###
+.venv/
+.env
+
+### OS/System Files ###
+.DS_Store
+Thumbs.db
