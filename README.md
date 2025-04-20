@@ -1,5 +1,12 @@
 # Pytorch Implementation of DUCK-Net for polyp image segmentation
 
+This repository is a modified and extended version of https://github.com/RazvanDu/DUCK-Net for experimental purposes (e.g., cross-dataset testing, DUCK block customization, etc.)
+
+Added:
+* IoU score, Jaccard Index adjusted.
+* Functionality for training and comparison for all four datasets from the original paper.
+* Additional Duck-Net based architectures used for experimentation.
+
 Pytorch Implementation of DUCK-Net
 
 Original code is available in [github](https://github.com/RazvanDu/DUCK-Net) and you can see detail of this model in [paper](https://www.nature.com/articles/s41598-023-36940-5).

@@ -15,7 +15,7 @@ def load_model(config:Configs, model_path:str):
 
 def predict(model:DuckNet, image_path:str, device:torch.device):
     image = ImageOps.exif_transpose(Image.open(image_path)).convert('RGB')
-    image = np.array(image.resize((512, 512)))
+    image = np.array(image.resize((352, 352)))
     image = torch.from_numpy(image).unsqueeze(0).permute(0, 3, 1, 2).float() / 255.0
     image = image.to(device)
 
@@ -29,7 +29,7 @@ def predict(model:DuckNet, image_path:str, device:torch.device):
 
 
 def main(config:Configs, model_path:str, image_path:str, output_path:str):
-    device = torch.device(f'cuda:{config.gpu_id}' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f'Using device: {device}')
     
     model = load_model(config, model_path)
@@ -54,8 +54,8 @@ def main(config:Configs, model_path:str, image_path:str, output_path:str):
 
 
 if __name__ == '__main__':
-    config = Configs(num_filters=34)
+    config = Configs(num_filters=17)
     model_path = 'checkpoints/best_model.pt'
-    image_path = 'sample_1.jpg'
+    image_path = '0.jpg'
     output_path = 'output_1.jpg'
     main(config, model_path, image_path, output_path)
