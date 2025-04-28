@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f619ff8-6860-46f6-8992-25c20c687107" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Duck-Net-PyTorch.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DUCK-Net-Pytorch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DUCK-Net-Pytorch/create_new.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DUCK-Net-Pytorch/mask_calc.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DUCK-Net-Pytorch/visualize_prediction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DUCK-Net-Pytorch" beforeDir="false" afterPath="$PROJECT_DIR$/DUCK-Net-Pytorch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DUCK-Net-Pytorch/model/layers.py" beforeDir="false" afterPath="$PROJECT_DIR$/DUCK-Net-Pytorch/model/layers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DUCK-Net-Pytorch/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/DUCK-Net-Pytorch/model/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DUCK-Net-Pytorch/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/DUCK-Net-Pytorch/test.py" afterDir="false" />
